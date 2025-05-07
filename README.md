@@ -1,4 +1,3 @@
-
 # MasrafTakipApi
 
 MasrafTakipApi, .NET 9 ve ASP.NET Core tabanlı, katmanlı mimarisi sayesinde sürdürülebilir, test edilebilir ve genişletilebilir bir harcama takip Web API’sidir. Entity Framework Core’un Code‑First migrations özelliği ile model değişiklikleri veritabanı şemasına otomatik yansıtılır. Asenkron işlemler için RabbitMQ mesaj kuyruğu kullanılır; yönetim arayüzü [http://localhost:15672](http://localhost:15672) adresinden erişilebilir. Docker Compose ile API, PostgreSQL ve RabbitMQ servisleri tek komutla ayağa kaldırılabilir. Swagger/OpenAPI (Swashbuckle) entegre edilerek interaktif dokümantasyon ve test arayüzü sunulur. Proje, GitHub Actions CI/CD, kapsamlı logging, versiyonlama, güvenlik ve katkı rehberi bölümleriyle tam bir “rapor” niteliğindedir.
@@ -32,38 +31,38 @@ MasrafTakipApi, kuruluşların ve bireylerin harcamalarını merkezi bir şekild
 ---
 
 ## Öne Çıkan Özellikler
-- CRUD Operasyonları: `/api/expenses` uç noktalarıyla GET, POST, PUT, DELETE işlemleri yapılabilir.
-- Katmanlı Mimari: Controller, Service ve Repository ayrımıyla kod bakımı ve testi kolaylaşır.
-- EF Core Migrations: Kod–ilk yaklaşımıyla veritabanı şemasını güncel tutar.
-- RabbitMQ Entegrasyonu: AMQP 0‑9‑1 ile güvenilir mesajlaşma sağlar.
-- Swagger/OpenAPI: Swashbuckle ile otomatik dokümantasyon.
-- Docker Compose: Tek adımlı ortam kurulumunu destekler.
-- AutoMapper: DTO ve Entity dönüşümlerini merkezi olarak yönetir.
-- FluentValidation: İstek doğrulamalarını güçlü koşullarla tanımlama imkânı sunar.
-- Logging: Microsoft.Extensions.Logging altyapısıyla kapsamlı loglama.
-- Versiyonlama: API versioning stratejileriyle geriye dönük uyumluluk sağlanır.
-- CI/CD: GitHub Actions ile otomatik build, test ve deploy iş akışları.
+- **CRUD Operasyonları**: `/api/expenses` uç noktalarıyla GET, POST, PUT, DELETE işlemleri yapılabilir.
+- **Katmanlı Mimari**: Controller, Service ve Repository ayrımıyla kod bakımı ve testi kolaylaşır.
+- **EF Core Migrations**: Kod–ilk yaklaşımıyla veritabanı şemasını güncel tutar.
+- **RabbitMQ Entegrasyonu**: AMQP 0‑9‑1 ile güvenilir mesajlaşma sağlar.
+- **Swagger/OpenAPI**: Swashbuckle ile otomatik dokümantasyon.
+- **Docker Compose**: Tek adımlı ortam kurulumunu destekler.
+- **AutoMapper**: DTO ve Entity dönüşümlerini merkezi olarak yönetir.
+- **FluentValidation**: İstek doğrulamalarını güçlü koşullarla tanımlama imkânı sunar.
+- **Logging**: Microsoft.Extensions.Logging altyapısıyla kapsamlı loglama.
+- **Versiyonlama**: API versioning stratejileriyle geriye dönük uyumluluk sağlanır.
+- **CI/CD**: GitHub Actions ile otomatik build, test ve deploy iş akışları.
 
 ---
 
 ## Kullanılan Teknolojiler
-- .NET 9 / ASP.NET Core Web API
-- Entity Framework Core
-- PostgreSQL
-- RabbitMQ v3.9+
-- Docker & Docker Compose
-- Swashbuckle (Swagger/OpenAPI)
-- AutoMapper
-- FluentValidation
-- GitHub Actions
-- Microsoft.Extensions.Logging
+- **.NET 9** / ASP.NET Core Web API
+- **Entity Framework Core**
+- **PostgreSQL**
+- **RabbitMQ v3.9+**
+- **Docker & Docker Compose**
+- **Swashbuckle (Swagger/OpenAPI)**
+- **AutoMapper**
+- **FluentValidation**
+- **GitHub Actions**
+- **Microsoft.Extensions.Logging**
 
 ---
 
 ## Önkoşullar
-1. .NET 9 SDK (`dotnet --version >= 9.0`)
-2. Docker Engine & Compose V2+
-3. RabbitMQ (Management Plugin aktif, [http://localhost:15672](http://localhost:15672))
+1. **.NET 9 SDK** (`dotnet --version >= 9.0`)
+2. **Docker Engine & Compose V2+**
+3. **RabbitMQ** (Management Plugin aktif, [http://localhost:15672](http://localhost:15672))
 4. Tercihe bağlı: pgAdmin 4 veya başka bir SQL istemcisi.
 
 ---
@@ -75,7 +74,6 @@ cd MasrafTakipApi
 dotnet restore
 dotnet build
 dotnet run --launch-profile "Development"
-```
 
 Uygulama [https://localhost:5001](https://localhost:5001) adresinde hizmet verir.  
 **Swagger UI**: [https://localhost:5001/swagger/index.html](https://localhost:5001/swagger/index.html)
