@@ -1,7 +1,7 @@
 using System.Text;
 using MasrafTakipApi.Data;
 using MasrafTakipApi.Entities;
-using MasrafTakipApi.Interfaces.Service;    
+using MasrafTakipApi.Interfaces.Service;
 using MasrafTakipApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -9,17 +9,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1) DbContext
+// DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
            .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
 });
 
-// 2) Identity & JWT
+// Identity & JWT
 builder.Services.AddIdentity<User, IdentityRole<Guid>>(opts =>
     {
         opts.Password.RequireNonAlphanumeric = false;
@@ -28,61 +29,100 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>(opts =>
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-// JWT setup
+// JWT Configuration
 var jwtSection = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSection["SecretKey"]!);
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        ValidateIssuer           = true,
-        ValidIssuer              = jwtSection["Issuer"],
-        ValidateAudience         = true,
-        ValidAudience            = jwtSection["Audience"],
-        ValidateLifetime         = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey         = new SymmetricSecurityKey(key)
-    };
-});
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = jwtSection["Issuer"],
+            ValidateAudience = true,
+            ValidAudience = jwtSection["Audience"],
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+    });
 
-// 3) Role policies
+// Authorization Policies
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("RequireAdmin", policy =>
+    options.AddPolicy("RequireAdmin", policy => 
         policy.RequireRole(UserRole.Admin.ToString()));
-    options.AddPolicy("RequirePersonnel", policy =>
+    options.AddPolicy("RequirePersonnel", policy => 
         policy.RequireRole(UserRole.Personnel.ToString()));
 });
 
-// 4) DI registrations
+// Swagger Configuration
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Masraf Takip API",
+        Version = "v1",
+        Description = "Masraf yönetimi için REST API",
+        Contact = new OpenApiContact { Name = "API Destek", Email = "destek@masraftakip.com" }
+    });
+
+    // JWT Auth için Swagger ayarı
+    var securityScheme = new OpenApiSecurityScheme
+    {
+        Name = "JWT Authentication",
+        Description = "Bearer token giriniz",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Reference = new OpenApiReference
+        {
+            Id = JwtBearerDefaults.AuthenticationScheme,
+            Type = ReferenceType.SecurityScheme
+        }
+    };
+    
+    c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        { securityScheme, Array.Empty<string>() }
+    });
+});
+
+// Servis Kayıtları
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IExpenseRequestService, ExpenseRequestService>();
-
 builder.Services.AddControllers();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Enable middleware to serve generated Swagger as a JSON endpoint
+// Middleware Pipeline
 app.UseSwagger();
-
-// Enable middleware to serve Swagger-UI (HTML, JS, CSS, etc.)
-app.UseSwaggerUI(options =>
+app.UseSwaggerUI(c =>
 {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
-    options.RoutePrefix = string.Empty; // Make Swagger UI the root of the application
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Masraf API v1");
+    c.RoutePrefix = "swagger";
 });
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-// Map controllers for endpoints
 app.MapControllers();
 
-// Run the app
+// Veritabanı Migration
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<AppDbContext>();
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Migration sırasında hata oluştu");
+    }
+}
+
 app.Run();
