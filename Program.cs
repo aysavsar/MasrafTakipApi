@@ -1,7 +1,7 @@
 using System.Text;
 using MasrafTakipApi.Data;
 using MasrafTakipApi.Entities;
-using MasrafTakipApi.Interfaces.Service;    // <-- eklendi
+using MasrafTakipApi.Interfaces.Service;    
 using MasrafTakipApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -68,10 +68,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Enable middleware to serve generated Swagger as a JSON endpoint
 app.UseSwagger();
-app.UseSwaggerUI();
+
+// Enable middleware to serve Swagger-UI (HTML, JS, CSS, etc.)
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+    options.RoutePrefix = string.Empty; // Make Swagger UI the root of the application
+});
+
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Map controllers for endpoints
 app.MapControllers();
+
+// Run the app
 app.Run();
