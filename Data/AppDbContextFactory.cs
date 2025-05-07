@@ -1,4 +1,3 @@
-// Data/AppDbContextFactory.cs
 using MasrafTakipApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;

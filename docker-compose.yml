@@ -1,8 +1,53 @@
 version: '3'
+
 services:
+  # PostgreSQL veritabanı servisi
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: paparaprojedb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # RabbitMQ servisi
   rabbitmq:
     image: rabbitmq:management
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     ports:
       - "15672:15672"  # RabbitMQ Web UI
       - "5672:5672"    # RabbitMQ Broker
+    networks:
+      - app-network
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
 
+  # API servisiniz (MasrafTakipApi)
+  api:
+    build: .
+    ports:
+      - "5001:5001"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - db
+      - rabbitmq
+    networks:
+      - app-network
+
+# Veritabanı ve RabbitMQ için volume'lar
+volumes:
+  postgres_data:
+  rabbitmq_data:
+
+# Network yapılandırması
+networks:
+  app-network:
+    driver: bridge
