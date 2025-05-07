@@ -1,7 +1,3 @@
-8 saniye için düşündüm
-
-
-````markdown
 # MasrafTakipApi
 
 **MasrafTakipApi**, .NET 9 ve ASP.NET Core tabanlı, katmanlı mimarisi sayesinde sürdürülebilir, test edilebilir ve genişletilebilir bir harcama takip Web API’sidir :contentReference[oaicite:0]{index=0}.  
