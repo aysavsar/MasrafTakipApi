@@ -32,38 +32,38 @@ MasrafTakipApi, kuruluşların ve bireylerin harcamalarını merkezi bir şekild
 ---
 
 ## Öne Çıkan Özellikler
-- **CRUD Operasyonları**: `/api/expenses` uç noktalarıyla GET, POST, PUT, DELETE işlemleri yapılabilir.
-- **Katmanlı Mimari**: Controller, Service ve Repository ayrımıyla kod bakımı ve testi kolaylaşır.
-- **EF Core Migrations**: Kod–ilk yaklaşımıyla veritabanı şemasını güncel tutar.
-- **RabbitMQ Entegrasyonu**: AMQP 0‑9‑1 ile güvenilir mesajlaşma sağlar.
-- **Swagger/OpenAPI**: Swashbuckle ile otomatik dokümantasyon.
-- **Docker Compose**: Tek adımlı ortam kurulumunu destekler.
-- **AutoMapper**: DTO ve Entity dönüşümlerini merkezi olarak yönetir.
-- **FluentValidation**: İstek doğrulamalarını güçlü koşullarla tanımlama imkânı sunar.
-- **Logging**: Microsoft.Extensions.Logging altyapısıyla kapsamlı loglama.
-- **Versiyonlama**: API versioning stratejileriyle geriye dönük uyumluluk sağlanır.
-- **CI/CD**: GitHub Actions ile otomatik build, test ve deploy iş akışları.
+- CRUD Operasyonları: `/api/expenses` uç noktalarıyla GET, POST, PUT, DELETE işlemleri yapılabilir.
+- Katmanlı Mimari: Controller, Service ve Repository ayrımıyla kod bakımı ve testi kolaylaşır.
+- EF Core Migrations: Kod–ilk yaklaşımıyla veritabanı şemasını güncel tutar.
+- RabbitMQ Entegrasyonu: AMQP 0‑9‑1 ile güvenilir mesajlaşma sağlar.
+- Swagger/OpenAPI: Swashbuckle ile otomatik dokümantasyon.
+- Docker Compose: Tek adımlı ortam kurulumunu destekler.
+- AutoMapper: DTO ve Entity dönüşümlerini merkezi olarak yönetir.
+- FluentValidation: İstek doğrulamalarını güçlü koşullarla tanımlama imkânı sunar.
+- Logging: Microsoft.Extensions.Logging altyapısıyla kapsamlı loglama.
+- Versiyonlama: API versioning stratejileriyle geriye dönük uyumluluk sağlanır.
+- CI/CD: GitHub Actions ile otomatik build, test ve deploy iş akışları.
 
 ---
 
 ## Kullanılan Teknolojiler
-- **.NET 9** / ASP.NET Core Web API
-- **Entity Framework Core**
-- **PostgreSQL**
-- **RabbitMQ v3.9+**
-- **Docker & Docker Compose**
-- **Swashbuckle (Swagger/OpenAPI)**
-- **AutoMapper**
-- **FluentValidation**
-- **GitHub Actions**
-- **Microsoft.Extensions.Logging**
+- .NET 9 / ASP.NET Core Web API
+- Entity Framework Core
+- PostgreSQL
+- RabbitMQ v3.9+
+- Docker & Docker Compose
+- Swashbuckle (Swagger/OpenAPI)
+- AutoMapper
+- FluentValidation
+- GitHub Actions
+- Microsoft.Extensions.Logging
 
 ---
 
 ## Önkoşullar
-1. **.NET 9 SDK** (`dotnet --version >= 9.0`)
-2. **Docker Engine & Compose V2+**
-3. **RabbitMQ** (Management Plugin aktif, [http://localhost:15672](http://localhost:15672))
+1. .NET 9 SDK (`dotnet --version >= 9.0`)
+2. Docker Engine & Compose V2+
+3. RabbitMQ (Management Plugin aktif, [http://localhost:15672](http://localhost:15672))
 4. Tercihe bağlı: pgAdmin 4 veya başka bir SQL istemcisi.
 
 ---
