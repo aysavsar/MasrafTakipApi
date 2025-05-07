@@ -253,4 +253,3 @@ Sorun, öneri veya katkı talepleri için **Issues** bölümünü kullanın:
 [1] [RabbitMQ Tutorials](https://www.rabbitmq.com/tutorials?utm_source=chatgpt.com)  
 [2] [Docker .NET Guide](https://docs.docker.com/guides/dotnet/containerize/?utm_source=chatgpt.com)  
 [3] [EF Core Migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/?utm_source=chatgpt.com)
-```
