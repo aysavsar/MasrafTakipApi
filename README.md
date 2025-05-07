@@ -1,4 +1,4 @@
-```markdown
+
 # MasrafTakipApi
 
 MasrafTakipApi, .NET 9 ve ASP.NET Core tabanlı, katmanlı mimarisi sayesinde sürdürülebilir, test edilebilir ve genişletilebilir bir harcama takip Web API’sidir. Entity Framework Core’un Code‑First migrations özelliği ile model değişiklikleri veritabanı şemasına otomatik yansıtılır. Asenkron işlemler için RabbitMQ mesaj kuyruğu kullanılır; yönetim arayüzü [http://localhost:15672](http://localhost:15672) adresinden erişilebilir. Docker Compose ile API, PostgreSQL ve RabbitMQ servisleri tek komutla ayağa kaldırılabilir. Swagger/OpenAPI (Swashbuckle) entegre edilerek interaktif dokümantasyon ve test arayüzü sunulur. Proje, GitHub Actions CI/CD, kapsamlı logging, versiyonlama, güvenlik ve katkı rehberi bölümleriyle tam bir “rapor” niteliğindedir.
