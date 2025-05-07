@@ -5998,11 +5998,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/aysilaavsar/MasrafTakipApi/MasrafTakipApi/MasrafTakipApi.csproj",
+      "projectUniqueName": "/Users/aysilaavsar/MasrafTakipApi/MasrafTakipApi.csproj",
       "projectName": "MasrafTakipApi",
-      "projectPath": "/Users/aysilaavsar/MasrafTakipApi/MasrafTakipApi/MasrafTakipApi.csproj",
+      "projectPath": "/Users/aysilaavsar/MasrafTakipApi/MasrafTakipApi.csproj",
       "packagesPath": "/Users/aysilaavsar/.nuget/packages/",
-      "outputPath": "/Users/aysilaavsar/MasrafTakipApi/MasrafTakipApi/obj/",
+      "outputPath": "/Users/aysilaavsar/MasrafTakipApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/aysilaavsar/.nuget/NuGet/NuGet.Config"

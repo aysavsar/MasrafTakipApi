@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MasrafTakipApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53a4f51c39e3686eed08052d9edcb78173231cd9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c2b357033434129b8811e0e488602b791bfc82d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MasrafTakipApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MasrafTakipApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

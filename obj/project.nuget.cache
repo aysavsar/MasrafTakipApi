@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R0cmiWEHi0k=",
+  "dgSpecHash": "Rf2KQ9w3gMs=",
   "success": true,
-  "projectFilePath": "/Users/aysilaavsar/MasrafTakipApi/MasrafTakipApi/MasrafTakipApi.csproj",
+  "projectFilePath": "/Users/aysilaavsar/MasrafTakipApi/MasrafTakipApi.csproj",
   "expectedPackageFiles": [
     "/Users/aysilaavsar/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/aysilaavsar/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
